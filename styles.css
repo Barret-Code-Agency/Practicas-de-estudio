@@ -1,0 +1,296 @@
+/* 1. RESET Y VARIABLES DE INGENIERÍA */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+:root {
+    --bg-dark: #1e1e1e;       /* Gris VS Code */
+    --bg-side: #252526;       /* Barra lateral */
+    --bg-explorer: #181818;   /* Explorador */
+    --accent: #007acc;        /* Azul terminal */
+    --border: #3c3c3c;
+    --text: #cccccc;
+    --keyword: #569cd6;
+    --variable: #9cdcfe;
+    --string: #ce9178;
+}
+
+/* 2. LAYOUT PRINCIPAL (GRID) */
+body.ide-layout {
+    display: grid;
+    grid-template-columns: 50px 250px 1fr; /* Sidebar | Explorer | Main */
+    grid-template-rows: 1fr 200px 25px;    /* Editor | Terminal | Status */
+    height: 100vh;
+    background-color: var(--bg-dark);
+    color: var(--text);
+    overflow: hidden;
+}
+
+/* 3. COMPONENTES DEL IDE */
+.ide-sidebar {
+    grid-row: 1 / 3;
+    background: var(--bg-side);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 0;
+    align-items: center;
+}
+
+.ide-explorer {
+    grid-row: 1 / 3;
+    background: var(--bg-explorer);
+    border-right: 1px solid var(--border);
+}
+
+.explorer-header {
+    padding: 10px 20px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: #858585;
+}
+
+.file-list {
+    list-style: none;
+    padding: 10px 0;
+}
+
+.file {
+    padding: 5px 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+}
+
+.file.active {
+    background: #37373d;
+}
+
+/* 4. EDITOR Y TABS */
+.ide-main {
+    grid-column: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.ide-tabs {
+    background: #2d2d2d;
+    display: flex;
+    height: 35px;
+}
+
+.tab {
+    padding: 8px 20px;
+    background: var(--bg-dark);
+    border-right: 1px solid var(--border);
+    font-size: 0.8rem;
+    border-top: 1px solid transparent;
+}
+
+.tab.active {
+    border-top: 1px solid var(--accent);
+}
+
+.ide-editor {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* 5. TERMINAL (EL ARSENAL) */
+.ide-terminal {
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-header {
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+    color: var(--text);
+}
+
+.terminal-body {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.terminal-input-line {
+    display: flex;
+    gap: 10px;
+}
+
+.terminal-input-line input {
+    background: transparent;
+    border: none;
+    color: #4ade80;
+    outline: none;
+    flex: 1;
+}
+
+/* 6. STATUS BAR */
+.ide-status-bar {
+    grid-column: 1 / 4;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+}
+
+/* SYNTAX HIGHLIGHTING */
+.keyword { color: var(--keyword); }
+.variable { color: var(--variable); }
+.string { color: var(--string); }
+.property { color: #9cdcfe; }
+.indent { margin-left: 20px; }
+
+.skill-bar {
+    background: #333;
+    border: 1px solid var(--border);
+    margin: 10px 0;
+    height: 20px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: white;
+}
+
+.skill-bar .fill {
+    background: var(--accent);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: width 1s ease-in-out;
+}
+
+.comment { color: #6a9955; font-style: italic; }
+
+/* SKILLS VISUALIZER */
+.skill-bar {
+    background: #333;
+    border: 1px solid var(--border);
+    margin: 15px 0;
+    height: 24px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-bar .fill {
+    background: linear-gradient(90deg, var(--accent), #4ade80);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    animation: slideIn 1.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { width: 0; }
+}
+
+.comment { color: #6a9955; font-style: italic; }
+
+/* LINKS EN EL CÓDIGO */
+.code-view a {
+    color: var(--string);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.skill-category {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--border);
+    display: inline-block;
+}
+
+.skill-bar {
+    background: #252526;
+    border: 1px solid var(--border);
+    margin: 8px 0;
+    height: 22px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 2px;
+}
+
+.skill-bar .fill {
+    background: var(--accent);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: white;
+    font-weight: 600;
+    transition: width 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.comment { color: #6a9955; }
+
+/* Contenedor del editor con scroll interno para ver todas las skills */
+.ide-editor {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto; /* IMPORTANTE: permite navegar el arsenal largo */
+    background-color: var(--bg-dark);
+}
+
+.skill-category {
+    font-size: 0.65rem;
+    color: var(--accent);
+    margin-top: 25px;
+    margin-bottom: 8px;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+}
+
+.skill-bar {
+    background: #252526;
+    border: 1px solid #333;
+    margin: 6px 0;
+    height: 18px; /* Más compactas para que quepan todas */
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.skill-bar .fill {
+    background: linear-gradient(90deg, #007acc, #4ade80);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    color: white;
+    font-weight: bold;
+    transition: width 2s ease-in-out;
+}

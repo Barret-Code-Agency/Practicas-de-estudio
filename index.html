@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FHD_Kernel | Software Engineer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ide-layout">
+
+    <aside class="ide-sidebar">
+        <div class="sidebar-icons">
+            <div class="icon active" title="Explorador">📁</div>
+            <div class="icon" title="Buscar">🔍</div>
+            <div class="icon" title="Git">🌿</div>
+            <div class="icon" title="Extensiones">🧩</div>
+        </div>
+        <div class="sidebar-bottom">
+            <div class="icon" title="Configuración">⚙️</div>
+        </div>
+    </aside>
+
+    <nav class="ide-explorer">
+        <div class="explorer-header">EXPLORADOR</div>
+        <div class="explorer-section">
+            <p class="section-title">▼ PORTFOLIO-FHD</p>
+            <ul class="file-list">
+                <li class="file active" data-target="home"><span>JS</span> index.js</li>
+                <li class="file" data-target="projects"><span>{}</span> projects.json</li>
+                <li class="file" data-target="skills"><span>TS</span> skills.ts</li>
+                <li class="file" data-target="contact"><span>MD</span> contact.md</li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="ide-main">
+        <header class="ide-tabs">
+            <div class="tab active" id="current-tab-name">index.js</div>
+        </header>
+
+        <section class="ide-editor" id="editor-content">
+            <div class="code-view active" id="home-view">
+                <div class="line-numbers">1 2 3 4 5 6 7</div>
+                <div class="code-content">
+                    <p><span class="keyword">const</span> <span class="variable">developer</span> = {</p>
+                    <p class="indent"><span class="property">name</span>: <span class="string">"Fernando Héctor Delgado"</span>,</p>
+                    <p class="indent"><span class="property">role</span>: <span class="string">"Fullstack Developer"</span>,</p>
+                    <p class="indent"><span class="property">focus</span>: [<span class="string">"Architecture"</span>, <span class="string">"Scalability"</span>],</p>
+                    <p class="indent"><span class="property">status</span>: <span class="string">"Open for challenges"</span></p>
+                    <p>};</p>
+                    <p><span class="keyword">export default</span> developer;</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="ide-terminal">
+            <div class="terminal-header">
+                <div class="terminal-tabs">
+                    <span class="t-tab active">TERMINAL</span>
+                    <span class="t-tab">DEBUG CONSOLE</span>
+                    <span class="t-tab">OUTPUT</span>
+                </div>
+            </div>
+            <div class="terminal-body" id="terminalOutput">
+                <div class="line">fhd_kernel v1.0.0 initialized. Type 'help' for available commands.</div>
+            </div>
+            <div class="terminal-input-line">
+                <span class="prompt">fhd@portfolio:~$</span>
+                <input type="text" id="terminalInput" spellcheck="false" autofocus>
+            </div>
+        </footer>
+    </main>
+
+    <div class="ide-status-bar">
+        <div class="status-left">
+            <span>🌿 main*</span>
+            <span>⟳ sync</span>
+        </div>
+        <div class="status-right">
+            <span>UTF-8</span>
+            <span>JavaScript</span>
+            <span>Line 1, Col 1</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
